@@ -1,7 +1,4 @@
 ﻿
-@{
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -15,8 +12,7 @@
         <div class="container">
             <h1>Looking For A Restaurant?</h1>
             <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-
-            <input type="button" class="btn btn-primary btn-block" value="Find Restaurants" onclick="location.href='@Url.Action("search","Restaurant")'" />
+            <input type="button" class="btn btn-primary btn-block" value="Find Restaurants" onclick="location.href='@Url.Action("Search","Search")'" />
         </div>
     </section>
     <!-- Image Section - set the background image for the header in the line below -->
@@ -29,7 +25,7 @@
         <div class="container">
             <h1>Restaurant Owner? Add Yourself To The Network!</h1>
             <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-            <input type="button" class="btn btn-primary btn-block" value="Add Restaurant" onclick="location.href='@Url.Action("create","Restaurant")'" />
+            <input type="button" class="btn btn-primary btn-block" value="Add Restaurant" onclick="location.href='@Url.Action("index","Restaurant")'" />
         </div>
     </section>
 </body>

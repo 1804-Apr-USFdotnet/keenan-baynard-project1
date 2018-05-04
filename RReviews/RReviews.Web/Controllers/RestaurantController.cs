@@ -28,12 +28,6 @@ namespace RReviews.Web.Controllers
             return View();
         }
 
-        public ActionResult Search()
-        {
-            ViewBag.max = 0;
-            return View(RestaurantAccessLibrary.GetRestaurantsByNameAscending());
-        }
-
         // POST: Restaurant/Create
         [HttpPost]
         public ActionResult Create(Restaurant restaurant)
@@ -42,7 +36,7 @@ namespace RReviews.Web.Controllers
             {
                 // TODO: Add insert logic here
                 RestaurantAccessLibrary.AddNewRestaurnt(restaurant);
-                return RedirectToAction("search");
+                return RedirectToAction("Index");
             }
             catch
             {
@@ -75,17 +69,18 @@ namespace RReviews.Web.Controllers
         // GET: Restaurant/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            return View(RestaurantAccessLibrary.GetRestaurantByID(id));
         }
 
         // POST: Restaurant/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        [HttpPost, ActionName("Delete")]
+        public ActionResult DeleteConfirmed(int id)
         {
             try
             {
                 // TODO: Add delete logic here
-
+                Restaurant rest = RestaurantAccessLibrary.GetRestaurantByID(id);
+                RestaurantAccessLibrary.DeleteRestaurant(rest);
                 return RedirectToAction("Index");
             }
             catch

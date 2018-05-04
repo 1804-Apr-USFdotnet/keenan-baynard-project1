@@ -32,6 +32,15 @@ namespace RReviews.DAL
             }
         }
 
+        public static void DeleteRestaurnt(RestaurantModels.Restaurant restaurant)
+        {
+            //using (RReviewsEntities db = new RReviewsEntities())
+            {
+                db.Restaurants.Remove(LibraryToData(restaurant));
+                db.SaveChanges();
+            }
+        }
+
 
         public static void AddNewReview(RestaurantModels.Review review)
         {
@@ -126,7 +135,7 @@ namespace RReviews.DAL
                     log.Error("DB does not contain any restaurants");
                     return new List<RestaurantModels.Restaurant>
                 {
-                    new RestaurantModels.Restaurant("","","")
+                    new RestaurantModels.Restaurant()
                 };
                 }
             }
@@ -146,7 +155,7 @@ namespace RReviews.DAL
                     log.Error("DB does not contain any restaurants");
                     return new List<RestaurantModels.Restaurant>
                 {
-                    new RestaurantModels.Restaurant("","","")
+                    new RestaurantModels.Restaurant()
                 };
                 }
             }
@@ -166,7 +175,7 @@ namespace RReviews.DAL
                     log.Error("DB does not contain any restaurants");
                     return new List<RestaurantModels.Restaurant>
                 {
-                    new RestaurantModels.Restaurant("","","")
+                    new RestaurantModels.Restaurant()
                 };
                 }
             }
@@ -186,7 +195,7 @@ namespace RReviews.DAL
                     log.Error("DB does not contain any restaurants");
                     return new List<RestaurantModels.Restaurant>
                 {
-                    new RestaurantModels.Restaurant("","","")
+                    new RestaurantModels.Restaurant()
                 };
                 }
             }
@@ -207,7 +216,7 @@ namespace RReviews.DAL
                     log.Error("DB does not contain any restaurants");
                     return new List<RestaurantModels.Restaurant>
                 {
-                    new RestaurantModels.Restaurant("","","")
+                    new RestaurantModels.Restaurant()
                 };
                 }
             }
@@ -227,7 +236,7 @@ namespace RReviews.DAL
                     log.Error("DB does not contain any restaurants");
                     return new List<RestaurantModels.Restaurant>
                 {
-                    new RestaurantModels.Restaurant("","","")
+                    new RestaurantModels.Restaurant()
                 };
                 }
             }
@@ -268,8 +277,11 @@ namespace RReviews.DAL
         }
         public static RestaurantModels.Restaurant DataToLibraryRestaurant(Restaurant dataModel)
         {
-            var libModel = new RestaurantModels.Restaurant(dataModel.Name, dataModel.City, dataModel.State)
+            var libModel = new RestaurantModels.Restaurant()
             {
+                Name = dataModel.Name,
+                City = dataModel.City,
+                State = dataModel.State,
                 ID = dataModel.ID,
                 FoodType = dataModel.FoodType,
                 OperationHours = dataModel.OperationHours,

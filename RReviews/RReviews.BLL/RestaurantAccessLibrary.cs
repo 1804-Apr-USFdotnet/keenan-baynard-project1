@@ -40,6 +40,11 @@ namespace RReviews.BLL
             RestaurantAccessData.AddNewRestaurnt(restaurant);
         }
 
+        public static void DeleteRestaurant(RestaurantModels.Restaurant restaurant)
+        {
+            RestaurantAccessData.DeleteRestaurnt(restaurant);
+        }
+
         public static void AddNewReview(RestaurantModels.Review review)
         {
             RestaurantAccessData.AddNewReview(review);

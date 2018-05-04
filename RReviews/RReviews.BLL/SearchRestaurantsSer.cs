@@ -70,7 +70,7 @@ namespace RReviews.BLL
                 log.Error("Restaurants list is either null or empty, searching will not work");
                 return restaurants = new List<RestaurantModels.Restaurant>
                 {
-                    new RestaurantModels.Restaurant("","","")
+                    new RestaurantModels.Restaurant()
                 };
             }
         }
@@ -87,7 +87,7 @@ namespace RReviews.BLL
                 log.Error("Restaurants list is either null or empty, searching will not work");
                 return restaurants = new List<RestaurantModels.Restaurant>
                 {
-                    new RestaurantModels.Restaurant("","","")
+                    new RestaurantModels.Restaurant()
                 };
             }
 
@@ -105,7 +105,7 @@ namespace RReviews.BLL
                 log.Error("Restaurants list is either null or empty, searching will not work");
                 return restaurants = new List<RestaurantModels.Restaurant>
                 {
-                    new RestaurantModels.Restaurant("","","")
+                    new RestaurantModels.Restaurant()
                 };
             }
         }
@@ -122,7 +122,7 @@ namespace RReviews.BLL
                 log.Error("Restaurants list is either null or empty, searching will not work");
                 return restaurants = new List<RestaurantModels.Restaurant>
                 {
-                    new RestaurantModels.Restaurant("","","")
+                    new RestaurantModels.Restaurant()
                 };
             }
         }
@@ -139,7 +139,7 @@ namespace RReviews.BLL
                 log.Error("Restaurants list is either null or empty, searching will not work");
                 return restaurants = new List<RestaurantModels.Restaurant>
                 {
-                    new RestaurantModels.Restaurant("","","")
+                    new RestaurantModels.Restaurant()
                 };
             }
         }
@@ -156,7 +156,7 @@ namespace RReviews.BLL
                 log.Error("Restaurants list is either null or empty, searching will not work");
                 return restaurants = new List<RestaurantModels.Restaurant>
                 {
-                    new RestaurantModels.Restaurant("","","")
+                    new RestaurantModels.Restaurant()
                 };
             }
         }

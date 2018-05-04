@@ -10,20 +10,17 @@ namespace RestaurantModels
     public class Restaurant : IRestaurant
     {
         public int ID { get; set; }
-        public string City { get; private set; }
-        public string State { get; private set; }
-        public string Name { get; private set; }
-        public List<Review> Reviews { get; set; }
+        public string City { get; set; }
+        public string State { get; set; }
+        public string Name { get; set; }
+        public virtual List<Review> Reviews { get; set; }
         public string FoodType { get; set; }
         public string OperationHours { get; set; }
 
 
-        public Restaurant(string name, string city, string state)
+        public Restaurant()
         {
             Reviews = new List<Review>();
-            Name = name;
-            City = city;
-            State = state;
         }
 
         public string GetLocation()

@@ -9,11 +9,11 @@ namespace RReviewsUnitTest
     [TestClass]
     public class UnitTest1
     {
-        Restaurant restaurant = new Restaurant("Fogo De Chao", "Minneapolis", "Minnesota");
-        Restaurant restaurant2 = new Restaurant("Wendys", "Tampa", "Florida");
-        Restaurant restaurant3 = new Restaurant("Chipotle", "St. Paul", "Minnesota");
-        Restaurant restaurant4 = new Restaurant("Ritas", "Lancaster", "Pennsylvania");
-        Restaurant restaurant5 = new Restaurant("Qdoba", "Temple Terrace", "Florida");
+        Restaurant restaurant = new Restaurant();
+        Restaurant restaurant2 = new Restaurant();
+        Restaurant restaurant3 = new Restaurant();
+        Restaurant restaurant4 = new Restaurant();
+        Restaurant restaurant5 = new Restaurant();
 
 
         public void init()
