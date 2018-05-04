@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using RReviews.BLL;
+using RestaurantModels;
 
 namespace RReviews.Web.Controllers
 {
@@ -11,13 +13,13 @@ namespace RReviews.Web.Controllers
         // GET: Restaurant
         public ActionResult Index()
         {
-            return View();
+            return View(RestaurantAccessLibrary.GetRestaurantsByNameAscending());
         }
 
         // GET: Restaurant/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            return View(RestaurantAccessLibrary.GetRestaurantByID(id));
         }
 
         // GET: Restaurant/Create
@@ -26,15 +28,21 @@ namespace RReviews.Web.Controllers
             return View();
         }
 
+        public ActionResult Search()
+        {
+            ViewBag.max = 0;
+            return View(RestaurantAccessLibrary.GetRestaurantsByNameAscending());
+        }
+
         // POST: Restaurant/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(Restaurant restaurant)
         {
             try
             {
                 // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
+                RestaurantAccessLibrary.AddNewRestaurnt(restaurant);
+                return RedirectToAction("search");
             }
             catch
             {

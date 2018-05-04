@@ -1,0 +1,46 @@
+﻿@model IEnumerable<RestaurantModels.Restaurant>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>search</title>
+</head>
+<body>
+    @for (int i=0;  i < Model.Count() - 1;)
+    {
+        <div class="row">
+            <div class="col-sm-4">
+                <b>@Model.ElementAt(i).Name</b>
+                <table>
+                    <tbody>
+                        <tr>@Model.ElementAt(i).City,  @Model.ElementAt(i++).State</tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-sm-4">
+                <b>@Model.ElementAt(i).Name</b>
+                <table>
+                    <tbody>
+                        <tr>@Model.ElementAt(i).City,  @Model.ElementAt(i++).State</tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-sm-4">
+                <b>@Model.ElementAt(i).Name</b>
+                <table>
+                    <tbody>
+                        <tr>@Model.ElementAt(i).City,  @Model.ElementAt(i++).State</tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    }
+
+
+</body>
+</html>
