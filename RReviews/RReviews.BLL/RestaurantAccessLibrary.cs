@@ -45,6 +45,11 @@ namespace RReviews.BLL
             RestaurantAccessData.DeleteRestaurnt(restaurant);
         }
 
+        public static void EditRestaurant(int id, RestaurantModels.Restaurant restaurant)
+        {
+            RestaurantAccessData.EditRestaurant(id, restaurant);
+        }
+
         public static void AddNewReview(RestaurantModels.Review review)
         {
             RestaurantAccessData.AddNewReview(review);

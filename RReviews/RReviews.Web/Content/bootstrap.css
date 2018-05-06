@@ -349,6 +349,10 @@ summary {
   display: list-item;
   cursor: pointer;
 }
+row,
+.top-buffer {
+    margin-top:20px;
+}
 
 template {
   display: none;
@@ -443,6 +447,7 @@ mark,
   padding-left: 0;
   list-style: none;
 }
+
 
 .list-inline {
   padding-left: 0;

@@ -1,18 +1,68 @@
-﻿
+﻿@using RestaurantModels
+@using RReviews.BLL
+@{
+    IEnumerable<Restaurant> rest = RestaurantAccessLibrary.GetBestReviewedRestaurantsTop3();
+}
 
 <!DOCTYPE html>
 <html lang="en">
+<head>
+    <style>
+        #panel {
+            padding-top: 20px
+        }
+    </style>
+</head>
 <body>
     <!-- Header - set the background image for the header in the line below -->
-    <header class="py-5 bg-image-full" style="background-image: url('../../homepage_bottom_right_bottom.jpg">
-        <img class="img-fluid d-block mx-auto" src="http://placehold.it/200x200&text=Logo" alt="">
+    <header class="py-5 bg-image-full" style="background-image: url('../../homepage_bottom_right_bottom.jpg');">
+        <div style="height:200px"></div>
     </header>
     <!-- Content section -->
     <section class="py-5">
         <div class="container">
             <h1>Looking For A Restaurant?</h1>
             <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-            <input type="button" class="btn btn-primary btn-block" value="Find Restaurants" onclick="location.href='@Url.Action("Search","Search")'" />
+            <input type="button" class="btn btn-primary btn-block" value="Find Restaurants" onclick="location.href='@Url.Action("Search","Search", new { type=" "})'" />
+            <div style="height:150px">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div id="panel">
+                            <div class="row">
+                                <div class="col text-center">
+                                    <b>Top Three Rated Restaurants</b>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-4 text-center">
+                                    @rest.ElementAt(0).Name : @rest.ElementAt(0).GetAvgReview()
+                                    <div>Food Type: @rest.ElementAt(0).FoodType</div>
+                                    <div>
+                                        @Html.ActionLink("Reviews", "Details", "Review", new { id = (rest.ElementAt(0).ID) }, null) |
+                                        @Html.ActionLink("Details", "Details", "Restaurant", new { id = (rest.ElementAt(0).ID) }, null)
+                                    </div>
+                                </div>
+                                <div class="col-sm-4 text-center">
+                                    @rest.ElementAt(1).Name : @rest.ElementAt(1).GetAvgReview()
+                                    <div>Food Type: @rest.ElementAt(1).FoodType</div>
+                                    <div>
+                                        @Html.ActionLink("Reviews", "Details", "Review", new { id = (rest.ElementAt(1).ID) }, null) |
+                                        @Html.ActionLink("Details", "Details", "Restaurant", new { id = (rest.ElementAt(1).ID) }, null)
+                                    </div>
+                                </div>
+                                <div class="col-sm-4 text-center">
+                                    @rest.ElementAt(2).Name : @rest.ElementAt(2).GetAvgReview()
+                                    <div>Food Type: @rest.ElementAt(2).FoodType</div>
+                                    <div>
+                                        @Html.ActionLink("Reviews", "Details", "Review", new { id = (rest.ElementAt(2).ID) }, null) |
+                                        @Html.ActionLink("Details", "Details", "Restaurant", new { id = (rest.ElementAt(2).ID) }, null)
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
     <!-- Image Section - set the background image for the header in the line below -->

@@ -1,0 +1,57 @@
+﻿@model IEnumerable<RestaurantModels.Review>
+@using RReviews.BLL;
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    @foreach (var item in Model)
+    {
+        <div>
+            <h4>Review For @RestaurantAccessLibrary.GetRestaurantByID(item.RestaurantID).Name</h4>
+            <hr />
+
+            <dl class="dl-horizontal">
+                <dt>
+                    Name
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(x => item.ReviewerName)
+                </dd>
+
+                <dt>
+                    Comment
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(itemx => item.ReviewComment)
+                </dd>
+
+                <dt>
+                    Rating
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(x => item.ReviewRating)
+                </dd>
+
+                <dt>
+                    Date Sumbmited
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(x => item.DateSubmitted)
+                </dd>
+
+            </dl>
+
+        </div>
+    }
+</body>
+</html>

@@ -98,8 +98,11 @@
           <NavigationProperty Name="Restaurant" Relationship="Self.FK_Reviews_Restaurants" FromRole="Reviews" ToRole="Restaurants" />
         </EntityType>
         <Association Name="FK_Reviews_Restaurants">
-          <End Role="Restaurants" Type="Self.Restaurant" Multiplicity="1" />
-          <End Role="Reviews" Type="Self.Review" Multiplicity="*" />
+          <End Role="Restaurants" Type="Self.Restaurant" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Reviews" Type="Self.Review" Multiplicity="*" >
+          </End>
           <ReferentialConstraint>
             <Principal Role="Restaurants">
               <PropertyRef Name="ID" />

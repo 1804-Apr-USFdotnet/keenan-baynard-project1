@@ -1,7 +1,8 @@
-﻿@model IEnumerable<RestaurantModels.Restaurant>
+﻿@model Tuple<int, IEnumerable<RestaurantModels.Restaurant>, string>
 
 
 <!DOCTYPE html>
+
 
 <html>
 <head>
@@ -9,32 +10,32 @@
     <title>search</title>
 </head>
 <body>
-    @for (int i = 0; i < Model.Count() - 1;)
-    {
-        <div class="row">
-            <div class="col-sm-4">
-                <b>@Model.ElementAt(i).Name</b>
-                <div>@Model.ElementAt(i).City,  @Model.ElementAt(i++).State</div>
-            </div>
-            <div class="col-sm-4">
-                <b>@Model.ElementAt(i).Name</b>
-                <table>
-                    <tbody>
-                        <tr>@Model.ElementAt(i).City,  @Model.ElementAt(i++).State</tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="col-sm-4">
-                <b>@Model.ElementAt(i).Name</b>
-                <table>
-                    <tbody>
-                        <tr>@Model.ElementAt(i).City,  @Model.ElementAt(i++).State</tr>
-                    </tbody>
-                </table>
+    <div class="btn-group">
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Display Order <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+            <li><a href="@Url.Action("Search", "Search",new {type=" "})">Alphabetical</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+        </ul>
+        <div class="topnav">
+            <div class="search-container">
+                <form action="Search">
+                    @Html.TextBoxFor(model => model.Item3)
+                    @Html.ValidationMessageFor(model => model.Item3)
+                    <button type="submit" >Submit</button>
+                </form>
             </div>
         </div>
+    </div>
+    <div></div>
+    @if (Model.Item3.Equals(" "))
+    {
+        @Html.Partial("SearchAlphaPartial", Model)
+    }else 
+    {
+        
     }
-
-
 </body>
 </html>

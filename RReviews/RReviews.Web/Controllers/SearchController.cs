@@ -15,9 +15,19 @@ namespace RReviews.Web.Controllers
             return View();
         }
 
-        public ActionResult Search()
+        public ActionResult Search(int max = 90, string type = " ")
         {
-            return View(RestaurantAccessLibrary.GetRestaurantsByNameAscending());
+            
+            Tuple<int, IEnumerable<RestaurantModels.Restaurant>, string> tuple;
+            if (type != "")
+            {
+                tuple = new Tuple<int, IEnumerable<RestaurantModels.Restaurant>, string>(max, RestaurantAccessLibrary.GetRestaurantsByNameAscending(), type);
+            }
+            else
+            {
+                tuple = new Tuple<int, IEnumerable<RestaurantModels.Restaurant>, string>(0,new List<RestaurantModels.Restaurant>(), "");
+            }
+            return View(tuple);
         }
     }
 }

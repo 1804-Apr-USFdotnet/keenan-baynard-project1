@@ -4,38 +4,37 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using RReviews.BLL;
-using RestaurantModels;
 
 namespace RReviews.Web.Controllers
 {
-    public class RestaurantController : Controller
+    public class ReviewController : Controller
     {
-        // GET: Restaurant
+        // GET: Review
         public ActionResult Index()
         {
-            return View(RestaurantAccessLibrary.GetRestaurantsByNameAscending());
+            return View();
         }
 
-        // GET: Restaurant/Details/5
+        // GET: Review/Details/5
         public ActionResult Details(int id)
         {
-            return View(RestaurantAccessLibrary.GetRestaurantByID(id));
+            return View(RestaurantAccessLibrary.GetReviewsByRestaurantID(id));
         }
 
-        // GET: Restaurant/Create
+        // GET: Review/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Restaurant/Create
+        // POST: Review/Create
         [HttpPost]
-        public ActionResult Create(Restaurant restaurant)
+        public ActionResult Create(FormCollection collection)
         {
             try
             {
                 // TODO: Add insert logic here
-                RestaurantAccessLibrary.AddNewRestaurnt(restaurant);
+
                 return RedirectToAction("Index");
             }
             catch
@@ -44,20 +43,20 @@ namespace RReviews.Web.Controllers
             }
         }
 
-        // GET: Restaurant/Edit/5
+        // GET: Review/Edit/5
         public ActionResult Edit(int id)
         {
-            return View(RestaurantAccessLibrary.GetRestaurantByID(id));
+            return View();
         }
 
-        // POST: Restaurant/Edit/5
+        // POST: Review/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, Restaurant restaurant)
+        public ActionResult Edit(int id, FormCollection collection)
         {
             try
             {
                 // TODO: Add update logic here
-                RestaurantAccessLibrary.EditRestaurant(id, restaurant);
+
                 return RedirectToAction("Index");
             }
             catch
@@ -66,21 +65,20 @@ namespace RReviews.Web.Controllers
             }
         }
 
-        // GET: Restaurant/Delete/5
+        // GET: Review/Delete/5
         public ActionResult Delete(int id)
         {
-            return View(RestaurantAccessLibrary.GetRestaurantByID(id));
+            return View();
         }
 
-        // POST: Restaurant/Delete/5
-        [HttpPost, ActionName("Delete")]
-        public ActionResult DeleteConfirmed(int id)
+        // POST: Review/Delete/5
+        [HttpPost]
+        public ActionResult Delete(int id, FormCollection collection)
         {
             try
             {
                 // TODO: Add delete logic here
-                Restaurant rest = RestaurantAccessLibrary.GetRestaurantByID(id);
-                RestaurantAccessLibrary.DeleteRestaurant(rest);
+
                 return RedirectToAction("Index");
             }
             catch

@@ -36,9 +36,26 @@ namespace RReviews.DAL
         {
             //using (RReviewsEntities db = new RReviewsEntities())
             {
-                db.Restaurants.Remove(LibraryToData(restaurant));
+                var rest = db.Restaurants.ToList();
+                db.Restaurants.Remove(rest.Find(x => x.ID.Equals(restaurant.ID)));
                 db.SaveChanges();
             }
+        }
+
+        public static void EditRestaurant(int id, RestaurantModels.Restaurant restaurant)
+        {
+            var rest = db.Restaurants.ToList();
+            var select = rest.Find(x => x.ID.Equals(id));
+            if (restaurant.Name!=null&&restaurant.Name!="")
+                select.Name = restaurant.Name;
+            if (restaurant.City != null && restaurant.City != "")
+                select.City = restaurant.City;
+            if (restaurant.State != null && restaurant.State != "")
+                select.State = restaurant.State;
+            if (restaurant.FoodType != null & restaurant.FoodType != "")
+                select.FoodType = restaurant.FoodType;
+
+            db.SaveChanges();
         }
 
 
