@@ -50,6 +50,16 @@ namespace RReviews.BLL
             RestaurantAccessData.EditRestaurant(id, restaurant);
         }
 
+        public static void EditReview(int id, RestaurantModels.Review review)
+        {
+            RestaurantAccessData.EditReview(id, review);
+        }
+
+        public static void DeleteReview(RestaurantModels.Review review)
+        {
+            RestaurantAccessData.DeleteReview(review);
+        }
+
         public static void AddNewReview(RestaurantModels.Review review)
         {
             RestaurantAccessData.AddNewReview(review);
@@ -58,6 +68,11 @@ namespace RReviews.BLL
         public static RestaurantModels.Restaurant GetRestaurantByID(int ID)
         {
             return RestaurantAccessData.GetRestaurantByID(ID);
+        }
+
+        public static RestaurantModels.Review GetReviewByID(int ID)
+        {
+            return RestaurantAccessData.GetReviewByID(ID);
         }
 
         public static RestaurantModels.Restaurant GetRestaurantByName(string name)

@@ -1,4 +1,5 @@
-﻿@model Tuple<int, IEnumerable<RestaurantModels.Restaurant>, string>
+﻿@using RReviews.BLL
+@model Tuple<int, IEnumerable<RestaurantModels.Restaurant>, string>
 
 
 <!DOCTYPE html>
@@ -15,16 +16,17 @@
             Display Order <span class="caret"></span>
         </button>
         <ul class="dropdown-menu">
-            <li><a href="@Url.Action("Search", "Search",new {type=" "})">Alphabetical</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
+            <li><a href="@Url.Action("Search", "Search",new {type=" "})">By Name Asc</a></li>
+            <li><a href="@Url.Action("Search", "Search",new {type="citya"})">By City Asc</a></li>
+            <li><a href="@Url.Action("Search", "Search",new {type="cityd"})">By City Desc</a></li>
+            <li><a href="@Url.Action("Search", "Search",new {type="named"})">By Name Desc</a></li>
+            <li><a href="@Url.Action("Search", "Search",new {type="review"})">By Review</a></li>
         </ul>
         <div class="topnav">
             <div class="search-container">
                 <form action="Search">
-                    @Html.TextBoxFor(model => model.Item3)
-                    @Html.ValidationMessageFor(model => model.Item3)
-                    <button type="submit" >Submit</button>
+                    <input type="text" id="type" , name="type" value="" />
+                    <button type="submit">Submit</button>
                 </form>
             </div>
         </div>
@@ -32,10 +34,28 @@
     <div></div>
     @if (Model.Item3.Equals(" "))
     {
-        @Html.Partial("SearchAlphaPartial", Model)
-    }else 
+
+        @Html.Partial("SearchAlphaPartial", Model, new ViewDataDictionary { { "rest", RestaurantAccessLibrary.GetRestaurantsByNameAscending() } })
+    }
+    else if (Model.Item3.Equals("citya"))
     {
-        
+        @Html.Partial("SearchAlphaPartial", Model, new ViewDataDictionary { { "rest", RestaurantAccessLibrary.GetRestaurantsByLocationCityAscending() } })
+    }
+    else if (Model.Item3.Equals("cityd"))
+    {
+        @Html.Partial("SearchAlphaPartial", Model, new ViewDataDictionary { { "rest", RestaurantAccessLibrary.GetRestaurantsByLocationCityDescending() } })
+    }
+    else if (Model.Item3.Equals("review"))
+    {
+        @Html.Partial("SearchAlphaPartial", Model, new ViewDataDictionary { { "rest", RestaurantAccessLibrary.GetAllRestaurantsByReviewDescending() } })
+    }
+    else if (Model.Item3.Equals("named"))
+    {
+        @Html.Partial("SearchAlphaPartial", Model, new ViewDataDictionary { { "rest", RestaurantAccessLibrary.GetRestaurantsByNameDescending() } })
+    }
+    else
+    {
+        @Html.Partial("SearchPartial", Model)
     }
 </body>
 </html>

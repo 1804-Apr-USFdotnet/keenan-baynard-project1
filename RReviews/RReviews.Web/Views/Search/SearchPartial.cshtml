@@ -1,0 +1,63 @@
+﻿@using RReviews.BLL
+@model Tuple<int, IEnumerable<RestaurantModels.Restaurant>, string>
+
+
+@{
+    ViewBag.Title = "Search";
+    IEnumerable<RestaurantModels.Restaurant> rest;
+    if (Model != null)
+    {
+        rest = RestaurantAccessLibrary.GetRestaurantFullName(Model.Item3).Item1;
+    }
+    else
+    {
+        rest = null;
+    }
+}
+
+<html>
+<head>
+    <style>
+        #rcell {
+            border: 2px solid black;
+            padding: 20px;
+            padding-left: 20px;
+            border-radius: 25px;
+            margin-left: 75px;
+            margin-right: 75px;
+        }
+    </style>
+</head>
+<body>
+    @if (rest != null)
+    {
+        for (int i = 0; i < rest.Count() - 1; i++)
+        {
+
+            <div class="col-sm-4">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div id="rcell">
+                            <div style="height:200px">
+                                <b>Name </b>@rest.ElementAt(i).Name     <b>@rest.ElementAt(i).GetAvgReview()</b>
+                                <div><b>City </b>@rest.ElementAt(i).City</div>
+                                <div><b>State </b>@rest.ElementAt(i).State</div>
+                                <div><b>Food Type </b>@rest.ElementAt(i).FoodType</div>
+                                <div>
+                                    @Html.ActionLink("Reviews", "Details", "Review", new { id = (rest.ElementAt(i).ID) }, null) |
+                                    @Html.ActionLink("Details", "Details", "Restaurant", new { id = (rest.ElementAt(i).ID) }, null)
+                                </div>
+                                <div>
+                                    @Html.ActionLink("Add Review", "Create", "Review", new { id = rest.ElementAt(i).ID }, null)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="height:20px"></div>
+        }
+    }
+</body>
+</html>

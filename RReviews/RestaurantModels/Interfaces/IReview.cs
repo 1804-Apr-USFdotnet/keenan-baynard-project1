@@ -8,6 +8,7 @@ namespace RestaurantModels.Interfaces
 {
     interface IReview
     {
+        int ID { get; set; }
         double ReviewRating { get; set; }
         string ReviewerName { get; set; }
         string ReviewComment { get; set; }

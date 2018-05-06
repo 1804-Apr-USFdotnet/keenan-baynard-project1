@@ -8,6 +8,7 @@ namespace RestaurantModels
 {
     public class Review : IReview
     {
+        public int ID { get; set; }
         public string ReviewerName { get; set; }
         public string ReviewComment { get; set; }
         public double ReviewRating { get; set; }

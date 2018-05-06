@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using RReviews.BLL;
+using RestaurantModels;
 
 namespace RReviews.Web.Controllers
 {
@@ -29,13 +30,14 @@ namespace RReviews.Web.Controllers
 
         // POST: Review/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(int id, Review review)
         {
             try
             {
                 // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
+                review.RestaurantID = id;
+                RestaurantAccessLibrary.AddNewReview(review);
+                return RedirectToAction("Search", "Search", null);
             }
             catch
             {
@@ -46,18 +48,18 @@ namespace RReviews.Web.Controllers
         // GET: Review/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            return View(RestaurantAccessLibrary.GetReviewByID(id));
         }
 
         // POST: Review/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, Review review)
         {
             try
             {
                 // TODO: Add update logic here
-
-                return RedirectToAction("Index");
+                RestaurantAccessLibrary.EditReview(id, review);
+                return RedirectToAction("Search", "Search", null);
             }
             catch
             {
@@ -68,7 +70,7 @@ namespace RReviews.Web.Controllers
         // GET: Review/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            return View(RestaurantAccessLibrary.GetReviewByID(id));
         }
 
         // POST: Review/Delete/5
@@ -78,7 +80,8 @@ namespace RReviews.Web.Controllers
             try
             {
                 // TODO: Add delete logic here
-
+                Review rev = RestaurantAccessLibrary.GetReviewByID(id);
+                RestaurantAccessLibrary.DeleteReview(rev);
                 return RedirectToAction("Index");
             }
             catch

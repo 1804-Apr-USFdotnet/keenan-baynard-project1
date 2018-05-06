@@ -42,11 +42,18 @@ namespace RReviews.DAL
             }
         }
 
+        public static void DeleteReview(RestaurantModels.Review review)
+        {
+            var rev = db.Reviews.ToList();
+            db.Reviews.Remove(rev.Find(x => x.ID.Equals(review.ID)));
+            db.SaveChanges();
+        }
+
         public static void EditRestaurant(int id, RestaurantModels.Restaurant restaurant)
         {
             var rest = db.Restaurants.ToList();
             var select = rest.Find(x => x.ID.Equals(id));
-            if (restaurant.Name!=null&&restaurant.Name!="")
+            if (restaurant.Name != null && restaurant.Name != "")
                 select.Name = restaurant.Name;
             if (restaurant.City != null && restaurant.City != "")
                 select.City = restaurant.City;
@@ -54,8 +61,23 @@ namespace RReviews.DAL
                 select.State = restaurant.State;
             if (restaurant.FoodType != null & restaurant.FoodType != "")
                 select.FoodType = restaurant.FoodType;
+            if (restaurant.OperationHours != null && restaurant.OperationHours != "")
+                select.OperationHours = restaurant.OperationHours;
 
             db.SaveChanges();
+        }
+        public static void EditReview(int id, RestaurantModels.Review review)
+        {
+            var rev = db.Reviews.ToList();
+            var select = rev.Find(x => x.ID.Equals(id));
+            if (review.ReviewerName != null && review.ReviewerName != "")
+                select.ReviewerName = review.ReviewerName;
+            if (review.ReviewerName != null && review.ReviewComment != "")
+                select.ReviewerComment = review.ReviewComment;
+
+            select.ReviewerRating = review.ReviewRating;
+            db.SaveChanges();
+
         }
 
 
@@ -74,6 +96,11 @@ namespace RReviews.DAL
             {
                 return DataToLibraryRestaurant(db.Restaurants.ToList().Find((x => x.ID.Equals(ID))));
             }
+        }
+
+        public static RestaurantModels.Review GetReviewByID(int ID)
+        {
+            return DataToLibraryReview(db.Reviews.ToList().Find((x => x.ID.Equals(ID))));
         }
 
         public static RestaurantModels.Restaurant GetRestaurantByName(string name)
@@ -284,6 +311,7 @@ namespace RReviews.DAL
         {
             var dataModel = new Review()
             {
+                ID = libModel.ID,
                 ReviewerName = libModel.ReviewerName,
                 ReviewerComment = libModel.ReviewComment,
                 ReviewerRating = libModel.ReviewRating,
@@ -314,6 +342,7 @@ namespace RReviews.DAL
         {
             var libModel = new RestaurantModels.Review()
             {
+                ID = dataModel.ID,
                 ReviewRating = dataModel.ReviewerRating,
                 ReviewComment = dataModel.ReviewerComment,
                 ReviewerName = dataModel.ReviewerName,

@@ -8,50 +8,62 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Details</title>
+    <style>
+        #space{
+            padding-left:20px;
+            padding-right:20px;
+        }
+    </style>
 </head>
 <body>
-    @foreach (var item in Model)
-    {
-        <div>
-            <h4>Review For @RestaurantAccessLibrary.GetRestaurantByID(item.RestaurantID).Name</h4>
-            <hr />
+    <div id="space">
+        @foreach (var item in Model)
+        {
+            <div>
+                <h4>Review For @RestaurantAccessLibrary.GetRestaurantByID(item.RestaurantID).Name</h4>
+                <hr />
 
-            <dl class="dl-horizontal">
-                <dt>
-                    Name
-                </dt>
+                <dl class="dl-horizontal">
+                    <dt>
+                        Name
+                    </dt>
 
-                <dd>
-                    @Html.DisplayFor(x => item.ReviewerName)
-                </dd>
+                    <dd>
+                        @Html.DisplayFor(x => item.ReviewerName)
+                    </dd>
 
-                <dt>
-                    Comment
-                </dt>
+                    <dt>
+                        Comment
+                    </dt>
 
-                <dd>
-                    @Html.DisplayFor(itemx => item.ReviewComment)
-                </dd>
+                    <dd>
+                        @Html.DisplayFor(itemx => item.ReviewComment)
+                    </dd>
 
-                <dt>
-                    Rating
-                </dt>
+                    <dt>
+                        Rating
+                    </dt>
 
-                <dd>
-                    @Html.DisplayFor(x => item.ReviewRating)
-                </dd>
+                    <dd>
+                        @Html.DisplayFor(x => item.ReviewRating)
+                    </dd>
 
-                <dt>
-                    Date Sumbmited
-                </dt>
+                    <dt>
+                        Date Sumbmited
+                    </dt>
 
-                <dd>
-                    @Html.DisplayFor(x => item.DateSubmitted)
-                </dd>
+                    <dd>
+                        @Html.DisplayFor(x => item.DateSubmitted)
+                    </dd>
 
-            </dl>
+                </dl>
 
-        </div>
-    }
+            </div>
+            <p>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID })
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+            </p>
+        }
+    </div>
 </body>
 </html>

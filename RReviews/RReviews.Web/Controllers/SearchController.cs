@@ -15,17 +15,17 @@ namespace RReviews.Web.Controllers
             return View();
         }
 
-        public ActionResult Search(int max = 90, string type = " ")
+        public ActionResult Search(IEnumerable<RestaurantModels.Restaurant> restaurants, string type = " ", int max = 90)
         {
-            
+
             Tuple<int, IEnumerable<RestaurantModels.Restaurant>, string> tuple;
             if (type != "")
             {
-                tuple = new Tuple<int, IEnumerable<RestaurantModels.Restaurant>, string>(max, RestaurantAccessLibrary.GetRestaurantsByNameAscending(), type);
+                tuple = new Tuple<int, IEnumerable<RestaurantModels.Restaurant>, string>(max, restaurants, type);
             }
             else
             {
-                tuple = new Tuple<int, IEnumerable<RestaurantModels.Restaurant>, string>(0,new List<RestaurantModels.Restaurant>(), "");
+                tuple = new Tuple<int, IEnumerable<RestaurantModels.Restaurant>, string>(0, new List<RestaurantModels.Restaurant>(), "");
             }
             return View(tuple);
         }

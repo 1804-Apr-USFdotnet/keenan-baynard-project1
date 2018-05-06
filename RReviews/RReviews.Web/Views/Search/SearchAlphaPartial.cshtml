@@ -1,7 +1,7 @@
-﻿@model Tuple<int, IEnumerable<RestaurantModels.Restaurant>,string>
+﻿@model Tuple<int, IEnumerable<RestaurantModels.Restaurant>, string>
 @{
     ViewBag.Title = "Search";
-    IEnumerable<RestaurantModels.Restaurant> rest = Model.Item2;
+    var rest = ViewData["rest"] as IEnumerable<RestaurantModels.Restaurant>;
     int max = Model.Item1;
 }
 
@@ -14,26 +14,26 @@
             padding-left: 20px;
             border-radius: 25px;
             margin-left: 75px;
-            margin-right:75px;
+            margin-right: 75px;
         }
     </style>
 </head>
 <body>
     <div class="btn-group">
-        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             How Many to Display <span class="caret"></span>
         </button>
         <ul class="dropdown-menu">
-            <li><a href="@Url.Action("Search", "Search",new { max = 90, type=" "})">9</a></li>
-            <li><a href="@Url.Action("Search", "Search", new { max = 80, type=" " })">21</a></li>
-            <li><a href="@Url.Action("Search", "Search", new { max = 70, type=" " })">30</a></li>
-            <li><a href="@Url.Action("Search", "Search", new { max = 60, type=" " })">39</a></li>
-            <li><a href="@Url.Action("Search", "Search", new { max = 50, type=" " })">51</a></li>
-            <li><a href="@Url.Action("Search", "Search", new { max = 40, type=" " })">60</a></li>
-            <li><a href="@Url.Action("Search", "Search", new { max = 30, type=" " })">69</a></li>
-            <li><a href="@Url.Action("Search", "Search", new { max = 20, type=" " })">81</a></li>
-            <li><a href="@Url.Action("Search", "Search", new { max = 10, type=" " })">90</a></li>
-            <li><a href="@Url.Action("Search", "Search", new { max = 0, type=" " })">all</a></li>
+            <li><a href="@Url.Action("Search", "Search",new { max = 90, type=Model.Item3})">9</a></li>
+            <li><a href="@Url.Action("Search", "Search", new { max = 80, type=Model.Item3 })">21</a></li>
+            <li><a href="@Url.Action("Search", "Search", new { max = 70, type=Model.Item3 })">30</a></li>
+            <li><a href="@Url.Action("Search", "Search", new { max = 60, type=Model.Item3 })">39</a></li>
+            <li><a href="@Url.Action("Search", "Search", new { max = 50, type=Model.Item3 })">51</a></li>
+            <li><a href="@Url.Action("Search", "Search", new { max = 40, type=Model.Item3 })">60</a></li>
+            <li><a href="@Url.Action("Search", "Search", new { max = 30, type=Model.Item3 })">69</a></li>
+            <li><a href="@Url.Action("Search", "Search", new { max = 20, type=Model.Item3 })">81</a></li>
+            <li><a href="@Url.Action("Search", "Search", new { max = 10, type=Model.Item3 })">90</a></li>
+            <li><a href="@Url.Action("Search", "Search", new { max = 0, type=Model.Item3 })">all</a></li>
 
         </ul>
     </div>
@@ -45,13 +45,16 @@
                     <div class="panel-body">
                         <div id="rcell">
                             <div style="height:200px">
-                                <b>Name </b>@rest.ElementAt(i).Name
+                                <b>Name </b>@rest.ElementAt(i).Name     <b>@rest.ElementAt(i).GetAvgReview()</b>
                                 <div><b>City </b>@rest.ElementAt(i).City</div>
                                 <div><b>State </b>@rest.ElementAt(i).State</div>
                                 <div><b>Food Type </b>@rest.ElementAt(i).FoodType</div>
                                 <div>
                                     @Html.ActionLink("Reviews", "Details", "Review", new { id = (rest.ElementAt(i).ID) }, null) |
                                     @Html.ActionLink("Details", "Details", "Restaurant", new { id = (rest.ElementAt(i).ID) }, null)
+                                </div>
+                                <div>
+                                    @Html.ActionLink("Add Review", "Create", "Review", new { id = rest.ElementAt(i).ID }, null)
                                 </div>
                                 @{i++;}
                             </div>
@@ -64,13 +67,16 @@
                     <div class="panel-body">
                         <div id="rcell">
                             <div style="height:200px">
-                                <b>Name </b>@rest.ElementAt(i).Name
+                                <b>Name </b>@rest.ElementAt(i).Name     <b>@rest.ElementAt(i).GetAvgReview()</b>
                                 <div><b>City </b>@rest.ElementAt(i).City</div>
                                 <div><b>State </b>@rest.ElementAt(i).State</div>
                                 <div><b>Food Type </b>@rest.ElementAt(i).FoodType</div>
                                 <div>
                                     @Html.ActionLink("Reviews", "Details", "Review", new { id = (rest.ElementAt(i).ID) }, null) |
                                     @Html.ActionLink("Details", "Details", "Restaurant", new { id = (rest.ElementAt(i).ID) }, null)
+                                </div>
+                                <div>
+                                    @Html.ActionLink("Add Review", "Create", "Review", new { id = rest.ElementAt(i).ID }, null)
                                 </div>
                                 @{i++;}
                             </div>
@@ -83,13 +89,16 @@
                     <div class="panel-body">
                         <div id="rcell">
                             <div style="height:200px">
-                                <b>Name </b>@rest.ElementAt(i).Name
+                                <b>Name </b>@rest.ElementAt(i).Name     <b>@rest.ElementAt(i).GetAvgReview()</b>
                                 <div><b>City </b>@rest.ElementAt(i).City</div>
                                 <div><b>State </b>@rest.ElementAt(i).State</div>
                                 <div><b>Food Type </b>@rest.ElementAt(i).FoodType</div>
                                 <div>
                                     @Html.ActionLink("Reviews", "Details", "Review", new { id = (rest.ElementAt(i).ID) }, null) |
                                     @Html.ActionLink("Details", "Details", "Restaurant", new { id = (rest.ElementAt(i).ID) }, null)
+                                </div>
+                                <div>
+                                    @Html.ActionLink("Add Review", "Create", "Review", new { id = rest.ElementAt(i).ID }, null)
                                 </div>
                                 @{i++;}
                             </div>
