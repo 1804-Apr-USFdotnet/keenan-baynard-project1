@@ -10,15 +10,30 @@ namespace RestaurantModels
 {
     public class Restaurant : IRestaurant
     {
+        [Required]
         public int ID { get; set; }
+
+        [DataType(DataType.Text)]
         [Required(ErrorMessage = "City is Required")]
+        [StringLength(30, ErrorMessage ="City Name is too Long ({1} char max)")]
         public string City { get; set; }
+
+        [DataType(DataType.Text)]
+        [StringLength(30, ErrorMessage ="State Name is too Long ({1} char max")]
         [Required(ErrorMessage = "State is Required")]
         public string State { get; set; }
+
+        [DataType(DataType.Text)]
+        [StringLength(30, ErrorMessage ="Name is too Long ({1} char max")]
         [Required(ErrorMessage = "Name is Required")]
         public string Name { get; set; }
+
         public virtual List<Review> Reviews { get; set; }
+
+        [StringLength(100, ErrorMessage ="Food Type Field is too Long ({1} char max)")]
         public string FoodType { get; set; }
+
+        [StringLength(200, ErrorMessage ="Operation Hours Field is too Long ({1} char max)")]
         public string OperationHours { get; set; }
 
 

@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using RReviews.Web;
+using System.Web.Mvc;
 
 namespace RReviews.Web.Controllers.UnitTests
 {
@@ -14,7 +16,13 @@ namespace RReviews.Web.Controllers.UnitTests
         [TestMethod()]
         public void DetailsUnitTest()
         {
-            Assert.Fail();
+            RestaurantController restaurant = new RestaurantController();
+            string expected = "Details";
+
+            var action = restaurant.Details(10) as ViewResult;
+            var actual = action.ViewName;
+
+            Assert.AreEqual(expected, action);
         }
 
         [TestMethod()]

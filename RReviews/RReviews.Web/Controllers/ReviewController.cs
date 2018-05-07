@@ -32,6 +32,10 @@ namespace RReviews.Web.Controllers
         [HttpPost]
         public ActionResult Create(int id, Review review)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(review);
+            }
             try
             {
                 // TODO: Add insert logic here
@@ -55,6 +59,10 @@ namespace RReviews.Web.Controllers
         [HttpPost]
         public ActionResult Edit(int id, Review review)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(review);
+            }
             try
             {
                 // TODO: Add update logic here
@@ -77,6 +85,10 @@ namespace RReviews.Web.Controllers
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(id);
+            }
             try
             {
                 // TODO: Add delete logic here

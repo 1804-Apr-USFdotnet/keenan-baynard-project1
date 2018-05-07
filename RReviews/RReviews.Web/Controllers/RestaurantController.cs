@@ -32,6 +32,10 @@ namespace RReviews.Web.Controllers
         [HttpPost]
         public ActionResult Create(Restaurant restaurant)
         {
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
             try
             {
                 // TODO: Add insert logic here
@@ -54,6 +58,10 @@ namespace RReviews.Web.Controllers
         [HttpPost]
         public ActionResult Edit(int id, Restaurant restaurant)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(restaurant);
+            }
             try
             {
                 // TODO: Add update logic here
@@ -76,6 +84,10 @@ namespace RReviews.Web.Controllers
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfirmed(int id)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(id);
+            }
             try
             {
                 // TODO: Add delete logic here
