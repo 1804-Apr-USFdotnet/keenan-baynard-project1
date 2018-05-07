@@ -6,6 +6,16 @@ using RReviews.BLL;
 
 namespace RReviewsUnitTest
 {
+    /// <summary>
+    /// 
+    /// 
+    /// 
+    ///    Failed Tests must be run one by one in order to pass. Not sure why
+    /// 
+    /// 
+    /// 
+    /// </summary>
+
     [TestClass]
     public class UnitTest1
     {

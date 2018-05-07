@@ -5,11 +5,13 @@ using System.Web;
 using System.Web.Mvc;
 using RReviews.BLL;
 using RestaurantModels;
+using NLog;
 
 namespace RReviews.Web.Controllers
 {
     public class ReviewController : Controller
     {
+        Logger log = LogManager.GetCurrentClassLogger();
         // GET: Review
         public ActionResult Index()
         {
@@ -34,6 +36,7 @@ namespace RReviews.Web.Controllers
         {
             if (!ModelState.IsValid)
             {
+                log.Error($"{review} is not valid");
                 return View(review);
             }
             try
@@ -43,8 +46,9 @@ namespace RReviews.Web.Controllers
                 RestaurantAccessLibrary.AddNewReview(review);
                 return RedirectToAction("Search", "Search", null);
             }
-            catch
+            catch (Exception e)
             {
+                log.Error($"Exception, {e}");
                 return View();
             }
         }
@@ -61,6 +65,7 @@ namespace RReviews.Web.Controllers
         {
             if (!ModelState.IsValid)
             {
+                log.Error($"{review} is not valid");
                 return View(review);
             }
             try
@@ -69,8 +74,9 @@ namespace RReviews.Web.Controllers
                 RestaurantAccessLibrary.EditReview(id, review);
                 return RedirectToAction("Search", "Search", null);
             }
-            catch
+            catch (Exception e)
             {
+                log.Error($"Exception, {e}");
                 return View();
             }
         }
@@ -87,6 +93,7 @@ namespace RReviews.Web.Controllers
         {
             if (!ModelState.IsValid)
             {
+                log.Error($"is not valid");
                 return View(id);
             }
             try
@@ -94,10 +101,11 @@ namespace RReviews.Web.Controllers
                 // TODO: Add delete logic here
                 Review rev = RestaurantAccessLibrary.GetReviewByID(id);
                 RestaurantAccessLibrary.DeleteReview(rev);
-                return RedirectToAction("Search","Search");
+                return RedirectToAction("Search", "Search");
             }
-            catch
+            catch (Exception e)
             {
+                log.Error($"Exception, {e}");
                 return View();
             }
         }

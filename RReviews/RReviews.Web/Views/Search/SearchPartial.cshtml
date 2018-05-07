@@ -1,8 +1,10 @@
 ﻿@using RReviews.BLL
+@using NLog
 @model Tuple<int, IEnumerable<RestaurantModels.Restaurant>, string>
 
 
 @{
+    Logger log = LogManager.GetCurrentClassLogger();
     ViewBag.Title = "Search";
     IEnumerable<RestaurantModels.Restaurant> rest;
     if (Model != null)
@@ -11,6 +13,7 @@
     }
     else
     {
+        log.Error($"{Model.Item3} does not exist");
         rest = null;
     }
 }
