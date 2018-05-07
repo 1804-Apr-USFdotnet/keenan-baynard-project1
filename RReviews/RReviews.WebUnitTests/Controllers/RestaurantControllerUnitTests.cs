@@ -5,6 +5,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using RReviews.Web;
+using System.Web.Mvc;
+using RestaurantModels;
 
 namespace RReviews.Web.Controllers.UnitTests
 {
@@ -12,33 +15,58 @@ namespace RReviews.Web.Controllers.UnitTests
     public class RestaurantControllerUnitTests
     {
         [TestMethod()]
-        public void IndexUnitTest()
+        public void DetailsModelUnitTest()
         {
-            Assert.Fail();
+            RestaurantController controller = new RestaurantController();
+           
+            var detailsData = controller.Details(10) as ViewResult;
+            var actual = detailsData.Model;
+           
+            Assert.IsNotNull(actual);
         }
 
         [TestMethod()]
-        public void DetailsUnitTest()
+        public void DetailsModelDataUnitTest()
         {
-            Assert.Fail();
+            RestaurantController controller = new RestaurantController();
+            
+            var result = controller.Details(50) as ViewResult;
+            var data = result.Model as Restaurant;
+            
+            Assert.AreEqual("Marshall Islands", data.State);
         }
 
         [TestMethod()]
-        public void CreateUnitTest()
+        public void EditModelUnitTest()
         {
-            Assert.Fail();
+            RestaurantController controller = new RestaurantController();
+
+            var editData = controller.Edit(10) as ViewResult;
+            var actual = editData.Model;
+
+            Assert.IsNotNull(actual);
         }
 
         [TestMethod()]
-        public void EditUnitTest()
+        public void EditModelDataUnitTest()
         {
-            Assert.Fail();
+            RestaurantController controller = new RestaurantController();
+
+            var result = controller.Edit(50) as ViewResult;
+            var data = result.Model as Restaurant;
+
+            Assert.AreEqual("Marshall Islands", data.State);
         }
 
         [TestMethod()]
-        public void DeleteUnitTest()
+        public void DeleteModelUnitTest()
         {
-            Assert.Fail();
+            RestaurantController controller = new RestaurantController();
+
+            var deleteData = controller.Delete(10) as ViewResult;
+            var actual = deleteData.Model as Restaurant;
+
+            Assert.IsNotNull(actual);
         }
     }
 }

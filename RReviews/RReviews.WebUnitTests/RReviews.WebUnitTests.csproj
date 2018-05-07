@@ -64,8 +64,8 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
-    <Compile Include="Controllers\RestaurantControllerUnitTests.cs" />
     <Compile Include="Controllers\ReviewControllerUnitTests.cs" />
+    <Compile Include="Controllers\RestaurantControllerUnitTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -73,6 +73,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\RestaurantModels\RReviews.Models.csproj">
+      <Project>{a91dcd07-4d65-432a-ac53-a17f31d19490}</Project>
+      <Name>RReviews.Models</Name>
+    </ProjectReference>
     <ProjectReference Include="..\RReviews.Web\RReviews.Web.csproj">
       <Project>{80CD2A63-C17E-4D28-857D-D84AA25F3FBB}</Project>
       <Name>RReviews.Web</Name>
