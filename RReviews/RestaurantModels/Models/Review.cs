@@ -17,7 +17,7 @@ namespace RestaurantModels
         public string ReviewerName { get; set; }
 
         [DataType(DataType.MultilineText)]
-        [StringLength(300, ErrorMessage ="Comment Field is too Long ({1} char max)")]
+        [StringLength(600, ErrorMessage ="Comment Field is too Long ({1} char max)")]
         public string ReviewComment { get; set; }
 
         [Required(ErrorMessage = "Rating is Required")]
