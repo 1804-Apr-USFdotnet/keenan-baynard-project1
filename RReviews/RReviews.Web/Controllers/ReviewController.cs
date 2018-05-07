@@ -19,7 +19,7 @@ namespace RReviews.Web.Controllers
         // GET: Review/Details/5
         public ActionResult Details(int id)
         {
-            return View(RestaurantAccessLibrary.GetReviewsByRestaurantID(id));
+            return View(RestaurantAccessLibrary.GetRestaurantByID(id).Reviews);
         }
 
         // GET: Review/Create
@@ -82,7 +82,7 @@ namespace RReviews.Web.Controllers
                 // TODO: Add delete logic here
                 Review rev = RestaurantAccessLibrary.GetReviewByID(id);
                 RestaurantAccessLibrary.DeleteReview(rev);
-                return RedirectToAction("Index");
+                return RedirectToAction("Search","Search");
             }
             catch
             {

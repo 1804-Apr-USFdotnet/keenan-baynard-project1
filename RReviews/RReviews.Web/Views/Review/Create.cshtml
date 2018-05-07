@@ -1,5 +1,9 @@
 ﻿@using RReviews.BLL
+@using NLog;
 @model RestaurantModels.Review
+    @{ 
+        Logger log = LogManager.GetCurrentClassLogger();
+    }
 
 
 <!DOCTYPE html>
@@ -55,7 +59,7 @@
     }
     
     <div>
-        @Html.ActionLink("Back to List", "Index")
+        @Html.ActionLink("Back to List", "Search","Search",null,null)
     </div>
 </body>
 </html>

@@ -4,14 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using RestaurantModels.Interfaces;
+using System.ComponentModel.DataAnnotations;
 
 namespace RestaurantModels
 {
     public class Restaurant : IRestaurant
     {
         public int ID { get; set; }
+        [Required(ErrorMessage = "City is Required")]
         public string City { get; set; }
+        [Required(ErrorMessage = "State is Required")]
         public string State { get; set; }
+        [Required(ErrorMessage = "Name is Required")]
         public string Name { get; set; }
         public virtual List<Review> Reviews { get; set; }
         public string FoodType { get; set; }
