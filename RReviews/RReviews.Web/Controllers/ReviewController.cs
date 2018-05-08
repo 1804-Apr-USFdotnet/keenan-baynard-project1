@@ -25,7 +25,7 @@ namespace RReviews.Web.Controllers
         }
 
         // GET: Review/Create
-        public ActionResult Create()
+        public ActionResult Create(int id)
         {
             return View();
         }
@@ -41,7 +41,6 @@ namespace RReviews.Web.Controllers
             }
             try
             {
-                // TODO: Add insert logic here
                 review.RestaurantID = id;
                 RestaurantAccessLibrary.AddNewReview(review);
                 return RedirectToAction("Search", "Search", null);
@@ -70,7 +69,6 @@ namespace RReviews.Web.Controllers
             }
             try
             {
-                // TODO: Add update logic here
                 RestaurantAccessLibrary.EditReview(id, review);
                 return RedirectToAction("Search", "Search", null);
             }
@@ -98,7 +96,6 @@ namespace RReviews.Web.Controllers
             }
             try
             {
-                // TODO: Add delete logic here
                 Review rev = RestaurantAccessLibrary.GetReviewByID(id);
                 RestaurantAccessLibrary.DeleteReview(rev);
                 return RedirectToAction("Search", "Search");
