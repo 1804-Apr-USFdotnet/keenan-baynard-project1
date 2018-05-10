@@ -1,0 +1,27 @@
+node('master'){
+    stage('import'){
+        git 'https://github.com/1804-Apr-USFdotnet/keenan-baynard-project1.git'
+    }
+    stage('build'){
+        dir('RReviews'){
+            bat 'nuget restore'
+            bat 'msbuild'
+        }
+    }
+    stage('test'){
+        //bat "VSTest.Console RReviews\\RReviews.WebUnitTest\\bin\\Debug\\RReviews.WebUnitTests.dll"
+    }
+    stage('analyze'){
+        
+    }
+    stage('package'){
+        dir('RReviews/RReviews.Web'){
+            bat 'msbuild /t:package'
+        }
+    }
+    stage('deploy'){
+        dir("RReviews\\RReviews.Web\\obj\\Debug\\Package"){
+            bat "\"C:\\Program Files\\IIS\\Microsoft Web Deploy V3\\msdeploy.exe\" -source:package='C:\\Program Files (x86)\\Jenkins\\workspace\\Project_1\\RReviews\\RReviews.Web\\obj\\Debug\\Package\\RReviews.Web.zip' -dest:auto,computerName=\"https://ec2-18-218-161-89.us-east-2.compute.amazonaws.com:8172/msdeploy.axd\",userName=\"Administrator\",password=\"${env.Deploy_Password}\",authtype=\"basic\",includeAcls=\"False\" -verb:sync -disableLink:AppPoolExtension -disableLink:ContentExtension -disableLink:CertificateExtension -setParamFile:\"C:\\Program Files (x86)\\Jenkins\\workspace\\Project_1\\RReviews\\RReviews.Web\\obj\\Debug\\Package\\RReviews.Web.SetParameters.xml\" -AllowUntrusted=True"
+        }
+    }
+}
