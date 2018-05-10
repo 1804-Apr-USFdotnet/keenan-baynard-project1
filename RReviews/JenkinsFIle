@@ -11,6 +11,7 @@ node('master'){
         }
         catch(exc){
             slackSend 'build failed!'
+            throw exc
         }
     }
     stage('test'){
@@ -32,6 +33,7 @@ node('master'){
         }
         catch(exc){
             slackSend 'deploy failed'
+            throw exc
         }
     }
 }
