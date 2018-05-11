@@ -26,9 +26,9 @@ node('master'){
     stage('analyze'){
         try{
             dir('RReviews'){
-                bat 'SonarQube.Scanner.MSBuild.exe begin /k:project1-kb /d:sonar.organization="abyssopelagic-github" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.login="78d222db71dbf012c2597357e51a1ac107d3567b"'
+                bat 'SonarScanner.MSBuild.exe begin /k:project1-kb' 
                 bat 'msbuild /t:rebuild'
-                bat 'SonarQube.Scanner.MSBuild.exe end /d:sonar.login="78d222db71dbf012c2597357e51a1ac107d3567b"'
+                bat 'SonarScanner.MSBuild.exe end'
             }
         }
         catch(exc){
