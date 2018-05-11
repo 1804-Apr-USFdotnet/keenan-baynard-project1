@@ -21,7 +21,7 @@ namespace RReviews.Web.Controllers
 
         public ActionResult Contact()
         {
-            return View();n
+            return View();
         }
 
         public ActionResult Create()
