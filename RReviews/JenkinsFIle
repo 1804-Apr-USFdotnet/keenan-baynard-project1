@@ -16,7 +16,7 @@ node('master'){
     }
     stage('test'){
         try{
-            bat "VSTest.Console RReviews\\RReviews.WebUnitTests\\bin\\Debug\\RReviews.WebUnitTests.dll"
+            //bat "VSTest.Console RReviews\\RReviews.WebUnitTests\\bin\\Debug\\RReviews.WebUnitTests.dll"
         }
         catch(exc){
             slackError('test')
