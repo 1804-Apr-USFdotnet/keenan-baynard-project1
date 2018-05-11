@@ -26,7 +26,7 @@ node('master'){
     stage('analyze'){
         try{
             dir('RReviews'){
-                bat 'SonarScanner.MSBuild.exe begin /k:Project_1' 
+                bat 'SonarScanner.MSBuild.exe begin /k:project1-kb' 
                 bat 'msbuild /t:rebuild'
                 bat 'SonarScanner.MSBuild.exe end'
             }
