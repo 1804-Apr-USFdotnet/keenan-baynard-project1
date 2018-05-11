@@ -11,7 +11,7 @@ namespace RReviews.Web.Controllers
         // GET: Home
         public ActionResult Index()
         {
-            return View();
+            return View(); 
         }
 
         public ActionResult About()
