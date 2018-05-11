@@ -24,11 +24,20 @@ node('master'){
         }
     }
     stage('analyze'){
-        
+        try{
+            dir('RReviews'){
+                bat 'SonarQube.Scanner.MSBuild.exe begin /k:project1-kb /v:0.1.0'
+                bat 'msbuild /t:rebuild'
+                bat 'SonarQube.Scanner.MSBuild'
+            }
+        }
+        catch(exc){
+
+        }
     }
     stage('package'){
         dir('RReviews/RReviews.Web'){
-            bat 'msbuild /t:package'
+            bat 'msbuild /t:package /p:Configuration-Debug'
         }
     }
     stage('deploy'){
