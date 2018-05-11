@@ -28,7 +28,7 @@ node('master'){
             dir('RReviews'){
                 bat 'SonarQube.Scanner.MSBuild.exe begin /k:project1-kb /v:0.1.0'
                 bat 'msbuild /t:rebuild'
-                bat 'SonarQube.Scanner.MSBuild'
+                bat 'SonarQube.Scanner.MSBuild.exe'
             }
         }
         catch(exc){
