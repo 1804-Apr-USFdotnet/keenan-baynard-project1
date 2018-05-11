@@ -37,7 +37,7 @@ node('master'){
     }
     stage('package'){
         dir('RReviews/RReviews.Web'){
-            bat 'msbuild /t:package /p:Configuration-Debug'
+            bat 'msbuild /t:package'
         }
     }
     stage('deploy'){
