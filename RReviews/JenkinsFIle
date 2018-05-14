@@ -37,8 +37,14 @@ node('master'){
         }
     }
     stage('package'){
+        try{
         dir('RReviews/RReviews.Web'){
             bat 'msbuild /t:package'
+        }
+        }
+        catch(exc){
+            slackError('package')
+            throw exc
         }
     }
     stage('deploy'){
